@@ -105,9 +105,6 @@ const stack = [
           <p class='animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'>
             Fatih Cloud
           </p>
-          <!-- <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
-            Currently designing products for humans.
-          </p> -->
           <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
             Senior Full-Stack Developer & R&D Specialist.
           </p>
@@ -130,21 +127,12 @@ const stack = [
       <!-- About Section -->
       <section class="animate">
         <article>
-          <!-- <p>I am a <b><i>software engineer</i></b>, <b><i>ui/ux designer</i></b>, <b><i>product planner</i></b>, <b><i>mentor</i></b>, <b><i>student</i></b>, <b><i>minimalist</i></b>, <b><i>eternal optimist</i></b>, <b><i>crypto enthusiast</i></b> and <b><i>sarcasm connoisseur</i></b>.</p>
-          <p>I love to both build and break things. I am motivated by challenging projects with self-guided research and dynamic problem solving. My true passion is crafting creative front end designs with unique takes on color, typography and motion.</p>
-          <p>During my career</p>
-          <p>I have built products ranging from marketing and ecommerce websites to complex enterprise apps with focus on delivering fast, elegant code along with delightful user interfaces.</p>
-          <p>Now</p>
-          <p>I currently work as a software engineer at StreamlineFS, where I do product planning, design and development.</p> -->
-          <!-- As a Mobile Application Developer; I create and maintain web and mobile applications that provide a seamless user experience and robust data handling capabilities. I have led the development of a full-stack mobile application from scratch, implemented a state management solution using Riverpod, and integrated multiple micro-services and third-party modules. 
- -->
           <p>I'm an <i>open-source enthusiast</i> with a focus on full-stack development and AI-driven solutions.</p>
           <p>Currently, I'm a Full Stack Developer and R&D Software Engineer at HL Software, where I lead the development of innovative projects, leveraging my expertise in .NET, C#, and AI technologies.</p>
           <b>I’m always open to new opportunities, offering a strong background in both mobile and web development. Feel free to connect with me!</b>
           <p>Throughout my career, I've contributed to projects like Kitapbulal.com, 3dyayinlari.com, and internal finance and logistics web applications, as well as pioneering AI-driven solutions such as automated issue title generation and sentiment analysis.</p>
           <p>Behind the Scenes</p>
           <p>My work on AI-driven algorithms has been recognized in competitive arenas, including securing a second-place finish at Teknofest through my contributions.</p>
- 
         </article>
       </section>
 
@@ -172,32 +160,24 @@ const stack = [
       </section>
  -->
       <!-- Tech Stack Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <p class="font-semibold text-black dark:text-white">
-            Tech Stack
-          </p>
-          <div class="flex flex-wrap items-center gap-2 mt-5">
-            {stack.map(item => (
-              <StackCard 
-                text={item.text}
-                icon={item.icon}
-                href={item.href}
-              />
-            ))}
+        <section class="animate py-8">
+          <div class="space-y-6">
+            <p class="font-bold text-lg text-black dark:text-white">
+              Tech Stack
+            </p>
+            <div class="flex flex-wrap justify-start gap-4 mt-4">
+              {stack.map(item => (
+                <StackCard 
+                  text={item.text}
+                  icon={item.icon}
+                  href={item.href}
+                />
+              ))}
+            </div>
           </div>
-          <!-- <div>
-            Performing reactivity and statefulness, special guest
-            <a href="https://www.solidjs.com/" target="_blank" class="w-fit group underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                SolidJS
-              </span>
-            </a>
-          </div> -->
-        </div>
-      </section>
+        </section>
 
-      <!-- Project Preview Section
+      <!-- Project Preview Section -->
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
@@ -219,7 +199,7 @@ const stack = [
           </ul>
         </div>
       </section>
- -->
+
       <!-- Contact Section -->
       <section class="animate">
         <div>
