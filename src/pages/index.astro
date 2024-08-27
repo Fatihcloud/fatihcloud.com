@@ -8,13 +8,13 @@ import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 
 const posts = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .filter((post: { data: { draft: any } }) => !post.data.draft)
+  .sort((a: { data: { date: { getTime: () => number } } }, b: { data: { date: { getTime: () => number } } }) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
 const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .filter((project: { data: { draft: any } }) => !project.data.draft)
+  .sort((a: { data: { date: { getTime: () => number } } }, b: { data: { date: { getTime: () => number } } }) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0,3)
 
 const stack = [
@@ -123,7 +123,18 @@ const stack = [
 
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-
+        <!-- Spotify Currently Playing -->
+        <section class="animate py-8">
+          <div class="space-y-6">
+            <p class="font-bold text-lg text-black dark:text-white">
+              Now Playing on Spotify
+            </p>
+            <div id="spotify-now-playing">
+              <!-- Spotify API'den gelen veriler burada gösterilecek -->
+            </div>
+          </div>
+        </section>
+        
       <!-- About Section -->
       <section class="animate">
         <article>
@@ -136,6 +147,8 @@ const stack = [
         </article>
       </section>
 
+
+      
       <!-- Blog Preview Section
       <section class="animate">
         <div class="space-y-4">
@@ -191,7 +204,7 @@ const stack = [
             </a>
           </div>
           <ul class="space-y-4">
-            {projects.map((project) => (
+            {projects.map((project: any) => (
               <li>
                 <ArrowCard entry={project} />
               </li>
@@ -229,4 +242,107 @@ const stack = [
       </section>
     </div>
   </div>
+<!-- Spotify Script -->
+<script>
+  
+  const _0x5eb17e=_0x308b;function _0x10c6(){const _0x34e8c9=['76ZEiIhs','59411IpsOvU','5192SKaGeP','45857GycpIC','fff4f3c30f95410bb0c699244cda3b11','c442a1930d1c4203bdf90baf952366d3','1408308sKkJag','1340bsiywW','4338JRJAzI','360fuxCSi','372ebQEZd','BQBjmhDKMzTVZy9iLrowEpRQj8wM0kX3Ll7WS3kGm4C8-jwUK94Xoiu5DFXppSXV9SpHbDYlPN5knY3495jTJTdxnBUF6Eczpwg_paqYQacVLX7NyCqRujW25sNkl-Ra66o_dmTqjibAFDzZUsR09VUZxpF_2n7bRts9zVCC1dFQgpvMqmzvIeoFX3knyefhuwVAcB0cK74fddulxr8ohg','AQCnSUSIHhjJhhEigQgJwFOI2o-P7cdrusfV2P0s0Rlwo-bFS37q-qRp7Lkc3buUbTO42FDgAASZX1EIFg3SZVNhVfC8ljGfVeSQUTkx_c9Uar9pfGPKRTgIVt7dbzYfpuk','112NApUKs','94659DJvkdw','8495sXiZye'];_0x10c6=function(){return _0x34e8c9;};return _0x10c6();}function _0x308b(_0x3973fb,_0x215bf0){const _0x10c64a=_0x10c6();return _0x308b=function(_0x308b75,_0x18d22b){_0x308b75=_0x308b75-0x1a1;let _0x5160ae=_0x10c64a[_0x308b75];return _0x5160ae;},_0x308b(_0x3973fb,_0x215bf0);}(function(_0x21d2d7,_0x38d4ab){const _0x575b95=_0x308b,_0x1056af=_0x21d2d7();while(!![]){try{const _0x3c73f9=parseInt(_0x575b95(0x1a3))/0x1+-parseInt(_0x575b95(0x1a7))/0x2*(-parseInt(_0x575b95(0x1ae))/0x3)+-parseInt(_0x575b95(0x1a5))/0x4*(-parseInt(_0x575b95(0x1a4))/0x5)+-parseInt(_0x575b95(0x1ab))/0x6+parseInt(_0x575b95(0x1a8))/0x7*(parseInt(_0x575b95(0x1a2))/0x8)+parseInt(_0x575b95(0x1ad))/0x9*(parseInt(_0x575b95(0x1ac))/0xa)+-parseInt(_0x575b95(0x1a6))/0xb*(parseInt(_0x575b95(0x1af))/0xc);if(_0x3c73f9===_0x38d4ab)break;else _0x1056af['push'](_0x1056af['shift']());}catch(_0x37f80e){_0x1056af['push'](_0x1056af['shift']());}}}(_0x10c6,0x2f065));let accessToken=_0x5eb17e(0x1b0);const refreshToken=_0x5eb17e(0x1a1),clientId=_0x5eb17e(0x1a9),clientSecret=_0x5eb17e(0x1aa);
+
+  async function refreshAccessToken() {
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+        client_id: clientId,
+        client_secret: clientSecret
+      })
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      accessToken = data.access_token; // Yeni access token alındı
+      console.log('Access token yenilendi.');
+    } else {
+      console.error('Failed to refresh token:', response.status);
+    }
+  }
+
+  async function fetchCurrentlyPlaying() {
+    const spotifyNowPlaying = document.getElementById('spotify-now-playing');
+
+    // Null check for spotifyNowPlaying
+    if (!spotifyNowPlaying) {
+      console.error('Element with id "spotify-now-playing" not found.');
+      return;
+    }
+
+    spotifyNowPlaying.innerHTML = `<p class="text-black dark:text-white">Loading...</p>`;
+
+    try {
+      let response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      if (response.status === 401) {
+        // Token süresi dolmuşsa, yenileyin
+        await refreshAccessToken();
+        response = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
+      }
+
+      if (response.status === 200) {
+        const data = await response.json();
+        if (data && data.is_playing) {
+          const song = data.item;
+          const songName = song.name;
+          const artistName = song.artists.map((artist: { name: any; }) => artist.name).join(', ');
+          const albumImage = song.album.images[0].url;
+          const albumName = song.album.name;
+          const songUrl = song.external_urls.spotify;
+
+          spotifyNowPlaying.innerHTML = `
+            <div class="relative p-4 rounded-lg shadow-lg overflow-hidden fade-in">
+              <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url(${albumImage}); filter: blur(2px);"></div>
+              <div class="relative z-10 p-4 bg-white dark:bg-gray-800 bg-opacity-80 backdrop-blur-md rounded-lg">
+                <div class="flex items-center space-x-4">
+                  <img src="${albumImage}" alt="Album Art" class="w-16 h-16 rounded">
+                  <div class="flex-1">
+                    <p class="text-black dark:text-white font-bold text-lg">${songName}</p>
+                    <p class="text-black dark:text-white opacity-75">by ${artistName}</p>
+                    <p class="text-black dark:text-white opacity-50">Album: ${albumName}</p>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <a href="${songUrl}" target="_blank" class="text-blue-500 dark:text-blue-300 underline">Listen on Spotify</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+        } else {
+          spotifyNowPlaying.innerHTML = `<p class="text-black dark:text-white">Currently not playing anything.</p>`;
+        }
+      } else {
+        spotifyNowPlaying.innerHTML = `<p class="text-black dark:text-white">Unable to fetch currently playing song.</p>`;
+      }
+    } catch (error) {
+      console.error('Error fetching currently playing song:', error);
+      spotifyNowPlaying.innerHTML = `<p class="text-black dark:text-white">An error occurred while fetching currently playing song.</p>`;
+    }
+  }
+
+  window.onload = function() {
+    fetchCurrentlyPlaying();
+    setInterval(fetchCurrentlyPlaying, 30000); // Her 60 saniyede bir tekrar dene
+  };
+</script>
+}
 </PageLayout>
