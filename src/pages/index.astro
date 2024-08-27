@@ -8,14 +8,14 @@ import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 
 const posts = (await getCollection("blog"))
-  .filter((post: { data: { draft: any } }) => !post.data.draft)
-  .sort((a: { data: { date: { getTime: () => number } } }, b: { data: { date: { getTime: () => number } } }) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
+  .filter((post: { data: { draft?: boolean } }) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 
-const projects = (await getCollection("projects"))
-  .filter((project: { data: { draft: any } }) => !project.data.draft)
-  .sort((a: { data: { date: { getTime: () => number } } }, b: { data: { date: { getTime: () => number } } }) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0,3)
+  const projects = (await getCollection("projects"))
+  .filter((project: { data: { draft?: boolean } }) => !project.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
 
 const stack = [
   {
@@ -244,6 +244,6 @@ const stack = [
     </div>
   </div>
   <!-- Include the minified JS file -->
-  <script client:only src="/js/index.min.js" type="text/javascript"></script>
+  <script src="/js/index.min.js" type="text/javascript"></script>
 }
 </PageLayout>
