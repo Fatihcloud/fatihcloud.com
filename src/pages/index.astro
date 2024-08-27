@@ -33,30 +33,30 @@ const stack = [
     icon: "python",
     href: "https://www.python.org",
   },
-  { 
-    text: "Astro", 
-    icon: "astro", 
-    href: "https://astro.build" 
+  {
+    text: "Astro",
+    icon: "astro",
+    href: "https://astro.build"
   },
-  { 
-    text: "Javascript", 
-    icon: "javascript", 
-    href: "https://www.javascript.com" 
+  {
+    text: "Javascript",
+    icon: "javascript",
+    href: "https://www.javascript.com"
   },
-  { 
-    text: "Typescript", 
-    icon: "typescript", 
-    href: "https://www.typescriptlang.org" 
+  {
+    text: "Typescript",
+    icon: "typescript",
+    href: "https://www.typescriptlang.org"
   },
-  { 
-    text: "C#", 
-    icon: "csharp", 
-    href: "https://docs.microsoft.com/en-us/dotnet/csharp/" 
+  {
+    text: "C#",
+    icon: "csharp",
+    href: "https://docs.microsoft.com/en-us/dotnet/csharp/"
   },
-  { 
-    text: ".NET", 
-    icon: "dotnet", 
-    href: "https://dotnet.microsoft.com" 
+  {
+    text: ".NET",
+    icon: "dotnet",
+    href: "https://dotnet.microsoft.com"
   },
 ]
 ---
@@ -86,7 +86,8 @@ const stack = [
   </div>
 
   <script is:inline src="/js/bg.js"></script>
-  
+
+
   <!-- HERO -->
   <section class="relative h-screen w-full">
     <div id="planetcont" class='animate absolute inset-0 top-1/4 overflow-hidden'>
@@ -148,8 +149,6 @@ const stack = [
         </article>
       </section>
 
-
-      
       <!-- Blog Preview Section
       <section class="animate">
         <div class="space-y-4">
@@ -172,7 +171,7 @@ const stack = [
           </ul>
         </div>
       </section>
- -->
+-->
       <!-- Tech Stack Section -->
         <section class="animate py-8">
           <div class="space-y-6">
@@ -181,7 +180,7 @@ const stack = [
             </p>
             <div class="flex flex-wrap justify-start gap-4 mt-4">
               {stack.map(item => (
-                <StackCard 
+                <StackCard
                   text={item.text}
                   icon={item.icon}
                   href={item.href}
@@ -222,7 +221,6 @@ const stack = [
           </p>
           <p>
             Reach out to me via email or on social media.
-            
           </p>
           <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
             {SOCIALS.map(social => (
@@ -243,7 +241,4 @@ const stack = [
       </section>
     </div>
   </div>
-  <!-- Include the minified JS file -->
-  <script src="/js/index.min.js" type="text/javascript"></script>
-}
 </PageLayout>
