@@ -269,10 +269,40 @@ async function fetchCurrentlyPlaying() {
           this.style.transform = "scale(1)";
         });
       } else {
-        spotifyNowPlaying.innerHTML = `<p class="text-black dark:text-white">Currently not playing anything.</p>`;
+        spotifyNowPlaying.innerHTML = `
+        <div class="spotify-container">
+          <div class="spotify-content">
+            <div class="spotify-image">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" alt="No Song Playing" />
+            </div>
+            <div class="spotify-text">
+              <p class="song-name">No Song Playing</p>
+              <p class="artist-name">Feel free to play something on Spotify!</p>
+              <div class="spotify-link">
+                <a href="https://open.spotify.com" target="_blank" class="listen-button">Open Spotify</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
       }
     } else {
-      spotifyNowPlaying.innerHTML = `<p class="text-black dark:text-white">Unable to fetch currently playing song.</p>`;
+      spotifyNowPlaying.innerHTML = `
+      <div class="spotify-container">
+        <div class="spotify-content">
+          <div class="spotify-image">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg" alt="No Song Playing" />
+          </div>
+          <div class="spotify-text">
+            <p class="song-name">No Song Playing</p>
+            <p class="artist-name">Feel free to play something on Spotify!</p>
+            <div class="spotify-link">
+              <a href="https://open.spotify.com" target="_blank" class="listen-button">Open Spotify</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
     }
   } catch (error) {
     console.error("Error fetching currently playing song:", error);
