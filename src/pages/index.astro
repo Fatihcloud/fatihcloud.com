@@ -124,18 +124,23 @@ const stack = [
 
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-      <!-- Spotify Currently Playing -->
+      <!-- Spotify Now Playing and Recently Played -->
       <section class="animate py-8">
         <div class="space-y-6">
           <p class="font-bold text-lg text-black dark:text-white">
-            Now Playing on Spotify
+            Now Playing Spotify
           </p>
           <div id="spotify-now-playing">
-            <!-- Spotify API'den gelen veriler burada gösterilecek -->
+            <!-- Currently playing song will be displayed here -->
+          </div>
+          <p class="font-bold text-lg text-black dark:text-white">
+            Recently Played
+          </p>
+          <div id="spotify-recently-played">
+            <!-- Recently played songs will be displayed here -->
           </div>
         </div>
       </section>
-
 
       <!-- About Section -->
       <section class="animate">
