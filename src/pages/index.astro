@@ -9,12 +9,12 @@ import MeteorShower from "@components/MeteorShower.astro"
 
 const posts = (await getCollection("blog"))
   .filter((post: { data: { draft?: boolean } }) => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .sort((a: { data: { date: { getTime: () => number } } }, b: { data: { date: { getTime: () => number } } }) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
   const projects = (await getCollection("projects"))
   .filter((project: { data: { draft?: boolean } }) => !project.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .sort((a: { data: { date: { getTime: () => number } } }, b: { data: { date: { getTime: () => number } } }) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
 
 const stack = [
@@ -87,7 +87,6 @@ const stack = [
 
   <script is:inline src="/js/bg.js"></script>
 
-
   <!-- HERO -->
   <section class="relative h-screen w-full">
     <div id="planetcont" class='animate absolute inset-0 top-1/4 overflow-hidden'>
@@ -117,6 +116,15 @@ const stack = [
               Read my blog
             </a>
           </div>
+          <div class="animated text-center mt-10">
+            <h3 class="text-xl md:text-2xl lg:text-3xl font-bold text-black dark:text-white">
+              My Favorite Quote
+            </h3>
+            <p class="text-sm md:text-base lg:text-lg opacity-75 mt-3">
+              As Sabahattin Ali says in his novel *Kuyucaklı Yusuf*: <br> &nbsp;
+              <em>“İki insanın birbiriyle karşılaşması kadere, tanıştıktan sonra yan yana kalmaları ise onların gayretine bağlıdır.”</em>
+            </p>            
+          </div>          
         </div>
       </div>
     </div>
@@ -154,7 +162,7 @@ const stack = [
         </article>
       </section>
 
-      <!-- Blog Preview Section
+      <!-- Blog Preview Section-->
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
@@ -176,7 +184,7 @@ const stack = [
           </ul>
         </div>
       </section>
--->
+
       <!-- Tech Stack Section -->
         <section class="animate py-8">
           <div class="space-y-6">
