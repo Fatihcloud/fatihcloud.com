@@ -63,7 +63,7 @@ import Container from "@components/Container.astro"
           <div class="order-1 sm:order-2 flex justify-center sm:justify-end">
             <div class="flex flex-wrap gap-1 items-center justify-center">
               {
-                SOCIALS.map((SOCIAL) => (
+                SOCIALS.map((SOCIAL: any) => (
                   <a 
                     href={SOCIAL.HREF} 
                     target="_blank" 
