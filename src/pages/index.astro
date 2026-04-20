@@ -6,6 +6,8 @@ import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
+import GithubActivity from "@components/GithubActivity.astro"
+import GitlabActivity from "@components/GitlabActivity.astro"
 
 const posts = (await getCollection("blog"))
   .filter((post: { data: { draft?: boolean } }) => !post.data.draft)
@@ -137,21 +139,11 @@ const stack = [
 
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-      <!-- Spotify Now Playing and Recently Played -->
-      <section class="animate py-8">
+      <!-- Activity Section -->
+      <section class="animate">
         <div class="space-y-6">
-          <p class="font-bold text-lg text-black dark:text-white">
-            Now Playing Spotify
-          </p>
-          <div id="spotify-now-playing">
-            <!-- Currently playing song will be displayed here -->
-          </div>
-          <p class="font-bold text-lg text-black dark:text-white">
-            Recently Played
-          </p>
-          <div id="spotify-recently-played">
-            <!-- Recently played songs will be displayed here -->
-          </div>
+          <GitlabActivity />
+          <GithubActivity />
         </div>
       </section>
 
@@ -242,7 +234,7 @@ const stack = [
             Reach out to me via email or on social media.
           </p>
           <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
-            {SOCIALS.map(social => (
+            {SOCIALS.map((social: any) => (
               <div class="col-span-1 flex items-center gap-1">
                 <span class="whitespace-nowrap truncate">
                   {social.NAME}
