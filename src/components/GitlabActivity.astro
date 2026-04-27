@@ -1,8 +1,8 @@
 ---
 import { withCache } from "../lib/cache";
 
-const GITLAB_TOKEN = import.meta.env.GITLAB_TOKEN;
-const GITLAB_USERNAME = import.meta.env.GITLAB_USERNAME;
+const GITLAB_TOKEN = import.meta.env.GL_TOKEN;
+const GITLAB_USERNAME = import.meta.env.GL_USER;
 
 let activityData: { dates: Record<string, number>, total: number } | null = null;
 let error: string | null = null;
